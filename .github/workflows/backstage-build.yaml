@@ -105,12 +105,14 @@ jobs:
         run: docker image ls
       
       - name: tag image
-        run: docker tag backstage:latest ${{ env.REGISTRY }}/${repo}:latest
+        run: |
+          repo=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -)
+          docker tag backstage:latest ${{ env.REGISTRY }}/kl-engineering/${repo}:latest
 
       - shell: bash 
         run: |
           repo=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -)
-          docker push ${{ env.REGISTRY }}/${repo}:latest
+          docker push ${{ env.REGISTRY }}/kl-engineering/${repo}:latest
 
       # Push the image to GHCR (Image Registry)
       # - name: Push To GHCR
