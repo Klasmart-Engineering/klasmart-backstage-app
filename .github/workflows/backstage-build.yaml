@@ -94,7 +94,9 @@ jobs:
 
       - name: build
         run: yarn backstage-cli repo build --all
-
+ 
+      - name: build-image
+        run: npm run build-image
       # - name: verify type dependencies
       #   run: yarn lint:type-deps
 
