@@ -98,15 +98,18 @@ jobs:
       # - name: verify type dependencies
       #   run: yarn lint:type-deps
 
+      - shell: bash 
+        run: |
+          docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ github.repository }}:latest
+
       # Push the image to GHCR (Image Registry)
-      - name: Push To GHCR
-        uses: ./
-        id: push
-        with:
-          image: backstage
-          tags: ${{ steps.meta.outputs.tags }}
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          extra-args: |
-            --disable-content-trust
+      # - name: Push To GHCR
+      #   id: push
+      #   with:
+      #     image: backstage
+      #     tags: ${{ steps.meta.outputs.tags }}
+      #     registry: ${{ env.REGISTRY }}
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
+      #     extra-args: |
+      #       --disable-content-trust
