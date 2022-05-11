@@ -103,6 +103,9 @@ jobs:
       - name: list docker images
         shell: bash
         run: docker image ls
+      
+      - name: tag image
+        run: docker tag backstage:latest ${{ env.REGISTRY }}/${repo}:latest
 
       - shell: bash 
         run: |
