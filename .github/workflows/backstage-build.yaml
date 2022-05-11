@@ -98,6 +98,10 @@ jobs:
       # - name: verify type dependencies
       #   run: yarn lint:type-deps
 
+      - name: list docker images
+        shell: bash
+        run: docker image ls
+
       - shell: bash 
         run: |
           repo=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -)
