@@ -100,7 +100,8 @@ jobs:
 
       - shell: bash 
         run: |
-          docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ github.repository }}:latest
+          repo=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -)
+          docker push ${{ env.REGISTRY }}/${{ github.actor }}/${repo}:latest
 
       # Push the image to GHCR (Image Registry)
       # - name: Push To GHCR
