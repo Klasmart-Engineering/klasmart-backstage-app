@@ -95,8 +95,8 @@ jobs:
       - name: build
         run: yarn backstage-cli repo build --all
 
-      - name: verify type dependencies
-        run: yarn lint:type-deps
+      # - name: verify type dependencies
+      #   run: yarn lint:type-deps
 
       # Push the image to GHCR (Image Registry)
       - name: Push To GHCR
