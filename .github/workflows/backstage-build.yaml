@@ -107,7 +107,7 @@ jobs:
       - shell: bash 
         run: |
           repo=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -)
-          docker push ${{ env.REGISTRY }}/kl-engineering/${repo}:latest
+          docker push ${{ env.REGISTRY }}/${repo}:latest
 
       # Push the image to GHCR (Image Registry)
       # - name: Push To GHCR
