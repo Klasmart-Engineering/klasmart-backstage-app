@@ -100,18 +100,19 @@ jobs:
       # - name: verify type dependencies
       #   run: yarn lint:type-deps
 
-      - name: list docker images
-        shell: bash
-        run: docker image ls
+      # - name: list docker images
+      #   shell: bash
+      #   run: docker image ls
+
+      - name: lowercase repository name
+        run: repo=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -) 
       
       - name: tag image
         run: |
-          repo=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -)
           docker tag backstage:latest ${{ env.REGISTRY }}/${repo}:latest
 
       - shell: bash 
         run: |
-          repo=$(echo 'console.log("${{ github.repository }}".toLowerCase())' | node -)
           docker push ${{ env.REGISTRY }}/${repo}:latest
 
       # Push the image to GHCR (Image Registry)
